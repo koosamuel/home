@@ -4,189 +4,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>구범용 | AI · Data · FinTech Developer</title>
+    <title>구범용 | Portfolio</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- 상단 메뉴 -->
-    <nav>
-
-        <div class="logo">
-            구범용
-        </div>
-
-        <ul>
-
-            <li><a href="#home">Home</a></li>
-
-            <li><a href="#about">About</a></li>
-
-            <li><a href="#skills">Skills</a></li>
-
-            <li><a href="#projects">Projects</a></li>
-
-            <li><a href="#contact">Contact</a></li>
-
-        </ul>
-
-    </nav>
-
-    <!-- 메인 화면 -->
-
-    <header class="hero" id="home">
+    <!-- 헤더 -->
+    <header class="hero">
 
         <h1>👋 구범용</h1>
 
         <h2>AI · Data · FinTech Developer</h2>
 
         <p>
-
-            데이터를 분석하여<br>
-            더 나은 의사결정을 돕는<br>
+            데이터를 분석하여 더 나은 의사결정을 돕는
             AI 서비스를 만드는 개발자입니다.
-
         </p>
-
-        <button id="helloBtn">
-
-            인사하기
-
-        </button>
-
-        <p id="message"></p>
 
     </header>
 
-    <main class="container">
+    <!-- 탭 메뉴 -->
 
-        <!-- About -->
+    <div class="tabs">
 
-        <section class="card" id="about">
+        <button class="tab active"
+            onclick="openTab(event,'about')">
 
-            <h2>🧑‍💻 About Me</h2>
+            About Me
 
-            <p>
+        </button>
 
-                안녕하세요.
+        <button class="tab"
+            onclick="openTab(event,'experience')">
 
-            </p>
+            Experience
 
-            <p>
+        </button>
 
-                저는 Computer Vision 개발과 금융 IT 경험을 바탕으로
+        <button class="tab"
+            onclick="openTab(event,'skills')">
 
-                데이터 분석과 AI를 공부하고 있습니다.
+            Skills
 
-            </p>
+        </button>
 
-            <p>
+        <button class="tab"
+            onclick="openTab(event,'projects')">
 
-                현재 서울대학교 빅데이터 핀테크 전문가과정에서
+            Projects
 
-                Python, 머신러닝, 웹 개발을 학습하며
+        </button>
 
-                데이터 기반 서비스를 개발하고 있습니다.
+        <button class="tab"
+            onclick="openTab(event,'contact')">
 
-            </p>
+            Contact
 
-        </section>
+        </button>
 
-        <!-- Skills -->
+    </div>
 
-        <section class="card" id="skills">
+    <!-- About -->
 
-            <h2>🛠 Skills</h2>
+    <div id="about" class="tabcontent" style="display:block;">
 
-            <div class="skills">
+        <h2>About Me</h2>
 
-                <span>Python</span>
+        <p>
 
-                <span>SQL</span>
+            안녕하세요.
 
-                <span>HTML</span>
+        </p>
 
-                <span>CSS</span>
+        <p>
 
-                <span>JavaScript</span>
+            Computer Vision 개발과
 
-                <span>FastAPI</span>
+            금융 IT 경험을 바탕으로
 
-                <span>Git / GitHub</span>
+            데이터 분석과 AI를 공부하고 있습니다.
 
-                <span>Pandas</span>
+        </p>
 
-                <span>Scikit-learn</span>
+        <p>
 
-            </div>
+            현재
 
-        </section>
+            서울대학교 빅데이터 핀테크 전문가과정에서
 
-        <!-- Experience -->
+            Python, 머신러닝,
 
-        <section class="card">
+            웹 개발을 학습하고 있습니다.
 
-            <h2>💼 Experience</h2>
+        </p>
 
-            <ul>
+    </div>
 
-                <li>Computer Vision 개발</li>
+    <!-- Experience -->
 
-                <li>금융 자동화 시스템 개발</li>
+    <div id="experience" class="tabcontent">
 
-                <li>데이터 분석 및 AI 프로젝트</li>
+        <h2>Experience</h2>
 
-            </ul>
+        <ul>
 
-        </section>
+            <li>Computer Vision 개발</li>
 
-        <!-- Projects -->
+            <li>금융 자동화 시스템 개발</li>
 
-        <section class="card" id="projects">
+            <li>데이터 분석 프로젝트</li>
 
-            <h2>📂 Projects</h2>
+            <li>AI 서비스 개발</li>
 
-            <ul>
+        </ul>
 
-                <li>FuelWise AI Dashboard</li>
+    </div>
 
-                <li>Melon Top100 Crawling</li>
+    <!-- Skills -->
 
-                <li>HSK Trade API Dashboard</li>
+    <div id="skills" class="tabcontent">
 
-            </ul>
+        <h2>Skills</h2>
 
-        </section>
+        <div class="skills">
 
-        <!-- Contact -->
+            <span>Python</span>
 
-        <section class="card" id="contact">
+            <span>SQL</span>
 
-            <h2>📧 Contact</h2>
+            <span>HTML</span>
 
-            <p>
+            <span>CSS</span>
 
-                Email : your_email@example.com
+            <span>JavaScript</span>
 
-            </p>
+            <span>FastAPI</span>
 
-            <p>
+            <span>Git</span>
 
-                GitHub :
+            <span>Pandas</span>
 
-                <a href="https://github.com/koosamuel" target="_blank">
+            <span>Scikit-learn</span>
 
-                    github.com/koosamuel
+        </div>
 
-                </a>
+    </div>
 
-            </p>
+    <!-- Projects -->
 
-        </section>
+    <div id="projects" class="tabcontent">
 
-    </main>
+        <h2>Projects</h2>
+
+        <ul>
+
+            <li>FuelWise AI Dashboard</li>
+
+            <li>HSK Trade API Dashboard</li>
+
+            <li>Melon Top100 Crawling</li>
+
+        </ul>
+
+    </div>
+
+    <!-- Contact -->
+
+    <div id="contact" class="tabcontent">
+
+        <h2>Contact</h2>
+
+        <p>
+
+            Email :
+            your_email@example.com
+
+        </p>
+
+        <p>
+
+            GitHub :
+            <a href="https://github.com/koosamuel"
+               target="_blank">
+
+                github.com/koosamuel
+
+            </a>
+
+        </p>
+
+    </div>
 
     <footer>
 
