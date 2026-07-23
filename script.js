@@ -1,100 +1,101 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+// ==========================
+// Tab Menu
+// ==========================
+
+function openTab(event, tabName) {
+
+    const contents = document.getElementsByClassName("tabcontent");
+
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].style.display = "none";
+    }
+
+    const tabs = document.getElementsByClassName("tab");
+
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+    }
+
+    document.getElementById(tabName).style.display = "block";
+
+    event.currentTarget.classList.add("active");
+
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    color: #333;
-    line-height: 1.6;
+
+
+// ==========================
+// Initial Page
+// ==========================
+
+window.onload = function () {
+
+    document.getElementById("about").style.display = "block";
+
+};
+
+
+
+// ==========================
+// Fade-in Animation
+// ==========================
+
+const observer = new IntersectionObserver(
+
+(entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+},
+
+{
+
+    threshold:0.2
+
 }
 
-.hero {
-    background: #2563eb;
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
-}
+);
 
-.subtitle {
-    font-size: 1.3rem;
-    margin: 10px 0;
-}
 
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    background: white;
-    color: #2563eb;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
 
-button:hover {
-    background: #e5e7eb;
-}
+document.querySelectorAll(".card").forEach(card => {
 
-.container {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
+    observer.observe(card);
 
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
+});
 
-.card h2 {
-    color: #2563eb;
-    margin-bottom: 15px;
-}
 
-.card p {
-    margin-bottom: 10px;
-}
 
-.card ul {
-    padding-left: 20px;
-}
+// ==========================
+// Smooth Navbar Effect
+// ==========================
 
-.card li {
-    margin-bottom: 8px;
-}
+window.addEventListener("scroll", function () {
 
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-}
+    const navbar = document.querySelector(".navbar");
 
-.skills span {
-    background: #2563eb;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 14px;
-}
+    if (window.scrollY > 30) {
 
-#message {
-    margin-top: 15px;
-    font-weight: bold;
-    color: yellow;
-}
+        navbar.style.background = "rgba(255,255,255,.95)";
 
-footer {
-    background: #1f2937;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 30px;
-}
+        navbar.style.boxShadow = "0 4px 20px rgba(0,0,0,.12)";
+
+    }
+
+    else {
+
+        navbar.style.background = "rgba(255,255,255,.85)";
+
+        navbar.style.boxShadow = "0 3px 15px rgba(0,0,0,.08)";
+
+    }
+
+});
