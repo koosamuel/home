@@ -1,184 +1,201 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>구범용 | AI · Data · FinTech Developer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구범용 | AI · Data · FinTech Developer</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f5f7fa;
-    color:#333;
-}
-
-header{
-    background:linear-gradient(135deg,#1d4ed8,#2563eb);
-    color:white;
-    text-align:center;
-    padding:70px 20px;
-}
-
-header h1{
-    font-size:48px;
-}
-
-header h2{
-    margin-top:10px;
-    font-weight:400;
-}
-
-header p{
-    margin-top:20px;
-    font-size:18px;
-    max-width:700px;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-.container{
-    width:90%;
-    max-width:1100px;
-    margin:40px auto;
-}
-
-.card{
-    background:white;
-    border-radius:12px;
-    padding:30px;
-    margin-bottom:25px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-h3{
-    color:#2563eb;
-    margin-bottom:20px;
-}
-
-ul{
-    list-style:none;
-}
-
-li{
-    padding:8px 0;
-    font-size:17px;
-}
-
-.skills{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:15px;
-}
-
-.skill{
-    background:#2563eb;
-    color:white;
-    text-align:center;
-    padding:15px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-footer{
-    background:#1f2937;
-    color:white;
-    text-align:center;
-    padding:20px;
-    margin-top:40px;
-}
-</style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+    <!-- 상단 메뉴 -->
+    <nav>
 
-<h1>👋 구범용</h1>
+        <div class="logo">
+            구범용
+        </div>
 
-<h2>AI · Data · FinTech Developer</h2>
+        <ul>
 
-<p>
-데이터를 분석하여 더 나은 의사결정을 돕는
-AI 서비스를 만드는 개발자입니다.
-</p>
+            <li><a href="#home">Home</a></li>
 
-</header>
+            <li><a href="#about">About</a></li>
 
-<div class="container">
+            <li><a href="#skills">Skills</a></li>
 
-<div class="card">
+            <li><a href="#projects">Projects</a></li>
 
-<h3>🧑‍💻 About Me</h3>
+            <li><a href="#contact">Contact</a></li>
 
-<p>
-안녕하세요.<br><br>
+        </ul>
 
-저는 Computer Vision 개발과 금융 IT 경험을 바탕으로
-데이터 분석과 AI를 공부하고 있습니다.<br><br>
+    </nav>
 
-현재 서울대학교 빅데이터 핀테크 전문가과정에서
-Python, 머신러닝, 웹 개발을 학습하며
-데이터 기반 서비스를 개발하고 있습니다.
-</p>
+    <!-- 메인 화면 -->
 
-</div>
+    <header class="hero" id="home">
 
-<div class="card">
+        <h1>👋 구범용</h1>
 
-<h3>💼 Experience</h3>
+        <h2>AI · Data · FinTech Developer</h2>
 
-<ul>
-<li>✔ Computer Vision 개발</li>
-<li>✔ 금융 자동화 시스템 개발</li>
-<li>✔ 데이터 분석</li>
-<li>✔ Python</li>
-<li>✔ AI / Machine Learning</li>
-</ul>
+        <p>
 
-</div>
+            데이터를 분석하여<br>
+            더 나은 의사결정을 돕는<br>
+            AI 서비스를 만드는 개발자입니다.
 
-<div class="card">
+        </p>
 
-<h3>🛠 Skills</h3>
+        <button id="helloBtn">
 
-<div class="skills">
+            인사하기
 
-<div class="skill">Python</div>
+        </button>
 
-<div class="skill">SQL</div>
+        <p id="message"></p>
 
-<div class="skill">HTML</div>
+    </header>
 
-<div class="skill">CSS</div>
+    <main class="container">
 
-<div class="skill">JavaScript</div>
+        <!-- About -->
 
-<div class="skill">FastAPI</div>
+        <section class="card" id="about">
 
-<div class="skill">Git / GitHub</div>
+            <h2>🧑‍💻 About Me</h2>
 
-<div class="skill">Pandas</div>
+            <p>
 
-<div class="skill">Scikit-learn</div>
+                안녕하세요.
 
-</div>
+            </p>
 
-</div>
+            <p>
 
-</div>
+                저는 Computer Vision 개발과 금융 IT 경험을 바탕으로
 
-<footer>
+                데이터 분석과 AI를 공부하고 있습니다.
 
-© 2026 Koo Beom Yong
+            </p>
 
-</footer>
+            <p>
+
+                현재 서울대학교 빅데이터 핀테크 전문가과정에서
+
+                Python, 머신러닝, 웹 개발을 학습하며
+
+                데이터 기반 서비스를 개발하고 있습니다.
+
+            </p>
+
+        </section>
+
+        <!-- Skills -->
+
+        <section class="card" id="skills">
+
+            <h2>🛠 Skills</h2>
+
+            <div class="skills">
+
+                <span>Python</span>
+
+                <span>SQL</span>
+
+                <span>HTML</span>
+
+                <span>CSS</span>
+
+                <span>JavaScript</span>
+
+                <span>FastAPI</span>
+
+                <span>Git / GitHub</span>
+
+                <span>Pandas</span>
+
+                <span>Scikit-learn</span>
+
+            </div>
+
+        </section>
+
+        <!-- Experience -->
+
+        <section class="card">
+
+            <h2>💼 Experience</h2>
+
+            <ul>
+
+                <li>Computer Vision 개발</li>
+
+                <li>금융 자동화 시스템 개발</li>
+
+                <li>데이터 분석 및 AI 프로젝트</li>
+
+            </ul>
+
+        </section>
+
+        <!-- Projects -->
+
+        <section class="card" id="projects">
+
+            <h2>📂 Projects</h2>
+
+            <ul>
+
+                <li>FuelWise AI Dashboard</li>
+
+                <li>Melon Top100 Crawling</li>
+
+                <li>HSK Trade API Dashboard</li>
+
+            </ul>
+
+        </section>
+
+        <!-- Contact -->
+
+        <section class="card" id="contact">
+
+            <h2>📧 Contact</h2>
+
+            <p>
+
+                Email : your_email@example.com
+
+            </p>
+
+            <p>
+
+                GitHub :
+
+                <a href="https://github.com/koosamuel" target="_blank">
+
+                    github.com/koosamuel
+
+                </a>
+
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        © 2026 Koo Beom Yong
+
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
