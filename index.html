@@ -1,249 +1,142 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>구범용 | Portfolio</title>
-
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        body{
-            font-family:Arial,sans-serif;
-            background:#f4f7fb;
-            color:#333;
-            line-height:1.6;
-        }
-
-        .hero{
-
-            background:#2563eb;
-
-            color:white;
-
-            text-align:center;
-
-            padding:60px 20px;
-
-        }
-
-        .subtitle{
-
-            font-size:1.3rem;
-
-            margin:10px 0;
-
-        }
-
-        button{
-
-            margin-top:20px;
-
-            padding:10px 20px;
-
-            border:none;
-
-            border-radius:8px;
-
-            background:white;
-
-            color:#2563eb;
-
-            cursor:pointer;
-
-            font-size:16px;
-
-        }
-
-        button:hover{
-
-            background:#e5e7eb;
-
-        }
-
-        #message{
-
-            margin-top:15px;
-
-            font-weight:bold;
-
-        }
-
-        .container{
-
-            max-width:1000px;
-
-            margin:30px auto;
-
-            padding:0 20px;
-
-        }
-
-        .card{
-
-            background:white;
-
-            padding:25px;
-
-            border-radius:12px;
-
-            margin-bottom:20px;
-
-            box-shadow:0 3px 10px rgba(0,0,0,.1);
-
-        }
-
-        .card h2{
-
-            color:#2563eb;
-
-            margin-bottom:15px;
-
-        }
-
-        .skills{
-
-            display:flex;
-
-            flex-wrap:wrap;
-
-            gap:10px;
-
-            margin-top:15px;
-
-        }
-
-        .skills span{
-
-            background:#2563eb;
-
-            color:white;
-
-            padding:8px 14px;
-
-            border-radius:20px;
-
-        }
-
-        footer{
-
-            background:#1f2937;
-
-            color:white;
-
-            text-align:center;
-
-            padding:20px;
-
-            margin-top:30px;
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서울대학교 빅데이터 핀테크 AI 고급 전문과정 13기 | 수업자료</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <header class="hero">
-
-        <h1>👋 구범용</h1>
-
-        <p class="subtitle">
-
-            AI · Data · FinTech Developer
-
-        </p>
-
-        <button onclick="sayHello()">
-
-            인사하기
-
-        </button>
-
-        <p id="message"></p>
-
-    </header>
-
-    <div class="container">
-
-        <section class="card">
-
-            <h2>About Me</h2>
-
-            <p>
-
-                Computer Vision 개발과 금융 IT 경험을 바탕으로
-
-                데이터 분석과 AI를 공부하고 있습니다.
-
-            </p>
-
-        </section>
-
-        <section class="card">
-
-            <h2>Skills</h2>
-
-            <div class="skills">
-
-                <span>Python</span>
-
-                <span>SQL</span>
-
-                <span>HTML</span>
-
-                <span>CSS</span>
-
-                <span>JavaScript</span>
-
-                <span>FastAPI</span>
-
-                <span>Git</span>
-
-            </div>
-
-        </section>
-
-        <section class="card">
-
-            <h2>Experience</h2>
-
-            <ul>
-
-                <li>Computer Vision 개발</li>
-
-                <li>금융 자동화 시스템 개발</li>
-
-                <li>데이터 분석 프로젝트</li>
-
-            </ul>
-
-        </section>
-
+  <!-- ===== 헤더 / 히어로 ===== -->
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="badge">서울대학교 빅데이터 핀테크 AI 고급 전문과정 13기</span>
+      <h1 class="hero-title">수업자료 &amp; 프로젝트 아카이브</h1>
+      <p class="hero-sub">이재욱 교수님 · 기계학습과 딥러닝 수업 Repository</p>
     </div>
+  </header>
 
-    <footer>
+  <!-- ===== 탭 네비게이션 ===== -->
+  <nav class="tabs" role="tablist" aria-label="과목 탭">
+    <button class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panel-stats" id="tab-stats" data-tab="stats">
+      통계
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-ml" id="tab-ml" data-tab="ml">
+      기계학습과 딥러닝
+    </button>
+  </nav>
 
-        © 2026 Koo Beom Yong
+  <main class="container">
 
-    </footer>
+    <!-- ===== 탭 패널 1: 통계 ===== -->
+    <section class="tab-panel is-active" id="panel-stats" role="tabpanel" aria-labelledby="tab-stats">
 
-    <script>
+      <!-- 하위 폴더 서브 탭 -->
+      <div class="subtabs" role="tablist" aria-label="통계 하위 폴더">
+        <button class="subtab-btn is-active" data-folder="project_progress" role="tab" aria-selected="true">
+          <i class="folder-dot"></i> 프로젝트 진행 내역
+        </button>
+        <button class="subtab-btn" data-folder="lecture_materials" role="tab" aria-selected="false">
+          <i class="folder-dot"></i> 수업자료
+        </button>
+      </div>
 
-        function sayHello(){
+      <!-- 프로젝트 진행 내역 폴더 -->
+      <div class="folder-panel is-active" id="folder-project_progress">
+        <div class="folder-head">
+          <div>
+            <h2 class="folder-title">프로젝트 진행 내역</h2>
+            <p class="folder-desc">PDF 보고서와 코드 소스를 이 폴더에 업로드합니다. 파일을 끌어다 놓거나 클릭해서 선택하세요.</p>
+          </div>
+          <span class="upload-enabled-tag">업로드 가능</span>
+        </div>
 
-            document.getElementById("message").innerHTML =
-            "방문해 주셔서 감사합니다! 😊";
+        <!-- 드래그앤드롭 업로드 영역 -->
+        <div class="dropzone" id="dropzone-project" tabindex="0" role="button"
+             aria-label="파일을 끌어다 놓거나 클릭해서 업로드">
+          <div class="dropzone-icon" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="dropzone-text">
+            <strong>파일을 여기로 끌어다 놓으세요</strong><br>
+            또는 클릭해서 선택 (PDF, .py, .ipynb 등 / 최대 25MB)
+          </p>
+          <input type="file" id="fileInput-project" multiple hidden
+                 accept=".pdf,.py,.ipynb,.js,.html,.css,.txt,.md,.csv,.json">
+        </div>
 
-        }
+        <!-- 업로드 진행상황 -->
+        <ul class="upload-queue" id="uploadQueue-project" aria-live="polite"></ul>
 
-    </script>
+        <!-- 파일 목록 -->
+        <div class="file-list-head">
+          <h3>업로드된 파일</h3>
+          <button class="refresh-btn" id="refreshBtn-project" type="button">새로고침</button>
+        </div>
+        <ul class="file-list" id="fileList-project">
+          <li class="file-list-loading">불러오는 중...</li>
+        </ul>
+      </div>
 
+      <!-- 수업자료 폴더 (열람 전용) -->
+      <div class="folder-panel" id="folder-lecture_materials">
+        <div class="folder-head">
+          <div>
+            <h2 class="folder-title">수업자료</h2>
+            <p class="folder-desc">교수님이 배포한 강의자료입니다. 현재는 열람만 가능합니다.</p>
+          </div>
+          <span class="upload-disabled-tag">열람 전용</span>
+        </div>
+
+        <div class="file-list-head">
+          <h3>강의자료 목록</h3>
+          <button class="refresh-btn" id="refreshBtn-lecture" type="button">새로고침</button>
+        </div>
+        <ul class="file-list" id="fileList-lecture">
+          <li class="file-list-loading">불러오는 중...</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- ===== 탭 패널 2: 기계학습과 딥러닝 (추후 별도 설계) ===== -->
+    <section class="tab-panel" id="panel-ml" role="tabpanel" aria-labelledby="tab-ml" hidden>
+      <div class="coming-soon">
+        <div class="coming-soon-icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2>기계학습과 딥러닝</h2>
+        <p>이 탭의 폴더 구조와 업로드 기능은 추후 별도로 설계될 예정입니다.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== 업로드 비밀번호 모달 ===== -->
+  <div class="modal-backdrop" id="passwordModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">업로드 비밀번호</h3>
+      <p class="modal-desc">파일을 저장소에 올리려면 업로드 비밀번호를 입력하세요.</p>
+      <input type="password" id="uploadPassword" placeholder="비밀번호" autocomplete="off">
+      <p class="modal-error" id="modalError" hidden>비밀번호가 올바르지 않습니다.</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="modalCancel" type="button">취소</button>
+        <button class="btn-primary" id="modalConfirm" type="button">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>서울대학교 빅데이터 핀테크 AI 고급 전문과정 13기 · <code>binsue0/.github</code> Repository 연동</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
