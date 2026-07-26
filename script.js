@@ -1,6 +1,6 @@
 /* =========================================================
    서울대 빅데이터 핀테크 AI 고급 전문과정 13기 - 수업자료 아카이브
-   tabs(해시 라우팅) / 파일목록(GitHub API) / 드래그앤드롭 업로드(서버리스 함수 경유)
+   tabs / 파일목록(GitHub API) / 드래그앤드롭 업로드(서버리스 함수 경유)
    ========================================================= */
 
 /* ---------------------------------------------------------
@@ -35,127 +35,51 @@ const CONFIG = {
 let cachedPassword = null;
 
 /* =========================================================
-   1. 해시(#) 기반 라우팅 — 탭·폴더 상태를 URL에 반영해 딥링크 지원
-   ---------------------------------------------------------
-   URL 형태:
-     #stats/project_progress   → 통계 탭 · 프로젝트
-     #stats/lecture_materials  → 통계 탭 · 수업자료
-     #ml                       → 기계학습과 딥러닝 탭
-   해시가 없으면 기본값(통계 · 프로젝트)으로 진입합니다.
-   이 URL을 그대로 복사해서 공유하면, 상대방이 접속했을 때
-   같은 탭·같은 폴더가 자동으로 열립니다.
-   과목이 늘어나도(최대 10개) data-tab 값만 늘리면 동일하게 동작합니다.
+   1. 탭 전환 (통계 / 기계학습과 딥러닝)
    ========================================================= */
-const DEFAULT_ROUTE = { tab: "stats", folder: "project_progress" };
-
-function parseRouteFromHash() {
-  const raw = window.location.hash.replace(/^#/, "");
-  if (!raw) return { ...DEFAULT_ROUTE };
-
-  const [tab, folder] = raw.split("/");
-  const validTab = document.querySelector(`.tab-btn[data-tab="${tab}"]`) ? tab : DEFAULT_ROUTE.tab;
-
-  if (validTab !== "stats") return { tab: validTab, folder: null };
-
-  const validFolder = folder in CONFIG.FOLDER_PATHS ? folder : DEFAULT_ROUTE.folder;
-  return { tab: "stats", folder: validFolder };
-}
-
-function routeToHash(tab, folder) {
-  return tab === "stats" ? `#stats/${folder}` : `#${tab}`;
-}
-
-/** 실제 화면(탭/서브탭/패널)에 라우트 상태를 반영합니다. */
-function renderRoute(route) {
-  // 메인 탭 버튼 + 패널
-  document.querySelectorAll(".tab-btn").forEach((b) => {
-    const active = b.dataset.tab === route.tab;
-    b.classList.toggle("is-active", active);
-    b.setAttribute("aria-selected", active ? "true" : "false");
-  });
-  document.querySelectorAll(".tab-panel").forEach((panel) => {
-    const isTarget = panel.id === `panel-${route.tab}`;
-    panel.classList.toggle("is-active", isTarget);
-    panel.hidden = !isTarget;
-  });
-
-  // 통계 탭일 때만 서브탭(폴더) 반영
-  if (route.tab === "stats" && route.folder) {
-    document.querySelectorAll(".subtab-btn").forEach((b) => {
-      const active = b.dataset.folder === route.folder;
-      b.classList.toggle("is-active", active);
-      b.setAttribute("aria-selected", active ? "true" : "false");
-    });
-    document.querySelectorAll(".folder-panel").forEach((panel) => {
-      panel.classList.toggle("is-active", panel.id === `folder-${route.folder}`);
-    });
-  }
-}
-
-/** 클릭으로 라우트를 바꿀 때: 해시만 갱신 → hashchange 이벤트가 화면 반영을 담당 */
-function navigateTo(tab, folder) {
-  const nextHash = routeToHash(tab, folder);
-  if (window.location.hash === nextHash) {
-    renderRoute({ tab, folder }); // 같은 해시라도 즉시 반영되도록 보정
-  } else {
-    window.location.hash = nextHash;
-  }
-}
-
-function initRouting() {
-  // 메인 탭(우측 세로 탭) 클릭 — 과목이 늘어나도 동일하게 동작
-  document.querySelectorAll(".tab-btn").forEach((btn) => {
+function initMainTabs() {
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  tabButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const tab = btn.dataset.tab;
-      navigateTo(tab, tab === "stats" ? DEFAULT_ROUTE.folder : null);
+      const target = btn.dataset.tab;
+
+      tabButtons.forEach((b) => {
+        b.classList.toggle("is-active", b === btn);
+        b.setAttribute("aria-selected", b === btn ? "true" : "false");
+      });
+
+      document.querySelectorAll(".tab-panel").forEach((panel) => {
+        const isTarget = panel.id === `panel-${target}`;
+        panel.classList.toggle("is-active", isTarget);
+        panel.hidden = !isTarget;
+      });
     });
   });
-
-  // 하위 폴더 서브탭 클릭
-  document.querySelectorAll(".subtab-btn").forEach((btn) => {
-    btn.addEventListener("click", () => navigateTo("stats", btn.dataset.folder));
-  });
-
-  // 뒤로가기/앞으로가기 및 해시 직접 변경 대응
-  window.addEventListener("hashchange", () => renderRoute(parseRouteFromHash()));
-
-  // 최초 진입 시 URL의 해시를 읽어 초기 화면 결정
-  renderRoute(parseRouteFromHash());
 }
 
 /* =========================================================
-   1-1. "이 화면 링크 복사" 버튼 — URL만 공유하면 해당 폴더로 바로 이동
+   2. 하위 폴더 서브탭 전환 (프로젝트 진행 내역 / 수업자료)
    ========================================================= */
-function initCopyLinkButtons() {
-  const toast = document.getElementById("toast");
-  let toastTimer = null;
+function initSubTabs() {
+  const subtabButtons = document.querySelectorAll(".subtab-btn");
+  subtabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const folder = btn.dataset.folder;
 
-  document.querySelectorAll(".link-btn[data-route]").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const [tab, folder] = btn.dataset.route.split("/");
-      const url = `${window.location.origin}${window.location.pathname}${routeToHash(tab, folder)}`;
+      subtabButtons.forEach((b) => {
+        b.classList.toggle("is-active", b === btn);
+        b.setAttribute("aria-selected", b === btn ? "true" : "false");
+      });
 
-      try {
-        await navigator.clipboard.writeText(url);
-      } catch {
-        // 클립보드 API 미지원 브라우저 대비 폴백
-        const temp = document.createElement("textarea");
-        temp.value = url;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand("copy");
-        document.body.removeChild(temp);
-      }
-
-      toast.classList.add("is-visible");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
+      document.querySelectorAll(".folder-panel").forEach((panel) => {
+        panel.classList.toggle("is-active", panel.id === `folder-${folder}`);
+      });
     });
   });
 }
 
 /* =========================================================
-   2. GitHub 저장소 파일 목록 불러오기 (읽기 전용, 인증 불필요)
+   3. GitHub 저장소 파일 목록 불러오기 (읽기 전용, 인증 불필요)
    ========================================================= */
 async function loadFileList(folderKey, listElId) {
   const listEl = document.getElementById(listElId);
@@ -215,7 +139,7 @@ function formatBytes(bytes) {
 }
 
 /* =========================================================
-   3. 비밀번호 모달 (Promise 기반)
+   4. 비밀번호 모달 (Promise 기반)
    ========================================================= */
 function askPassword() {
   return new Promise((resolve) => {
@@ -256,7 +180,7 @@ function askPassword() {
 }
 
 /* =========================================================
-   4. 드래그앤드롭 업로드
+   5. 드래그앤드롭 업로드
    ========================================================= */
 function initDropzone() {
   const dropzone = document.getElementById("dropzone-project");
@@ -397,8 +321,8 @@ function fileToBase64(file) {
    초기화
    ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  initRouting();
-  initCopyLinkButtons();
+  initMainTabs();
+  initSubTabs();
   initDropzone();
 
   loadFileList("project_progress", "fileList-project");

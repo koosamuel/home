@@ -1,7 +1,6 @@
 /* =========================================================
    서울대 빅데이터 핀테크 AI 고급 전문과정 13기 - 수업자료 아카이브
    컬러 컨셉: SNU 남색(#0B2E5C) + 골드 포인트(#C9A24B)
-   레이아웃: 상단 배너 이미지 + 좌측 콘텐츠 / 우측 세로 탭(과목 최대 10개 대응)
    ========================================================= */
 
 :root {
@@ -24,7 +23,6 @@
   --shadow-sm: 0 1px 2px rgba(11, 46, 92, 0.06);
   --shadow-md: 0 6px 20px rgba(11, 46, 92, 0.10);
   --font-sans: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", -apple-system, BlinkMacSystemFont, sans-serif;
-  --sidebar-width: 220px;
 }
 
 * { box-sizing: border-box; }
@@ -37,30 +35,33 @@ body {
   line-height: 1.6;
 }
 
-/* ---------- 상단 배너 이미지 ---------- */
-.top-banner {
-  width: 100%;
-  line-height: 0; /* 이미지 하단 여백 제거 */
-  background: var(--snu-navy-deep);
+/* ---------- 헤더 / 히어로 ---------- */
+.hero {
+  position: relative;
+  background:
+    radial-gradient(1200px 400px at 85% -20%, rgba(201,162,75,0.18), transparent 60%),
+    linear-gradient(160deg, var(--snu-navy-deep) 0%, var(--snu-navy) 55%, var(--snu-navy-soft) 130%);
+  color: #fff;
+  padding: 56px 24px 64px;
+  overflow: hidden;
 }
-.top-banner img {
-  width: 100%;
-  height: auto;
-  display: block;
+.hero::before {
+  /* 은은한 회로/격자 패턴 (핀테크 뉘앙스) */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 80% 60% at 70% 20%, black 20%, transparent 75%);
+  pointer-events: none;
 }
-
-/* ---------- 페이지 헤더 바 (이름/배지) ---------- */
-.page-header-bar {
-  background: linear-gradient(135deg, var(--snu-navy-deep), var(--snu-navy));
-  padding: 22px 24px;
-}
-.page-header-inner {
-  max-width: 1100px;
+.hero-inner {
+  position: relative;
+  max-width: 960px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  text-align: center;
 }
 .badge {
   display: inline-block;
@@ -68,62 +69,47 @@ body {
   border: 1px solid rgba(201,162,75,0.55);
   border-radius: 999px;
   color: var(--snu-gold-soft);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  white-space: nowrap;
+  margin-bottom: 18px;
 }
-.page-title {
-  margin: 0;
-  font-size: 22px;
+.hero-title {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4vw, 40px);
   font-weight: 800;
-  color: #fff;
   letter-spacing: -0.01em;
 }
-
-/* ---------- 본문 레이아웃: 좌측 콘텐츠 + 우측 세로 탭 ---------- */
-.page-shell {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  gap: 28px;
-  padding: 32px 24px 80px;
-}
-.content-area {
-  flex: 1;
-  min-width: 0; /* flex 자식의 overflow 방지 */
+.hero-sub {
+  margin: 0;
+  color: rgba(255,255,255,0.78);
+  font-size: 15.5px;
 }
 
-/* ---------- 우측 세로 탭 사이드바 ---------- */
-.tab-sidebar {
-  width: var(--sidebar-width);
-  flex-shrink: 0;
+/* ---------- 메인 탭 네비게이션 ---------- */
+.tabs {
   position: sticky;
-  top: 20px;
-}
-.tabs-vertical {
+  top: 0;
+  z-index: 20;
   display: flex;
-  flex-direction: column;
   gap: 4px;
+  max-width: 960px;
+  margin: -26px auto 0;
+  padding: 8px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 8px;
   box-shadow: var(--shadow-md);
-  max-height: calc(100vh - 40px);
-  overflow-y: auto;
 }
 .tab-btn {
-  width: 100%;
-  text-align: left;
-  padding: 12px 14px;
+  flex: 1;
+  padding: 12px 18px;
   border: none;
-  border-radius: 9px;
+  border-radius: calc(var(--radius-lg) - 6px);
   background: transparent;
   color: var(--text-secondary);
   font-family: inherit;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
@@ -134,6 +120,12 @@ body {
   color: #fff;
 }
 
+/* ---------- 본문 컨테이너 ---------- */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
 .tab-panel { display: none; }
 .tab-panel.is-active { display: block; }
 
@@ -183,7 +175,6 @@ body {
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
 }
 .folder-title {
   margin: 0 0 4px;
@@ -195,7 +186,7 @@ body {
   margin: 0;
   color: var(--text-secondary);
   font-size: 14px;
-  max-width: 480px;
+  max-width: 520px;
 }
 .upload-enabled-tag, .upload-disabled-tag {
   flex-shrink: 0;
@@ -207,54 +198,6 @@ body {
 }
 .upload-enabled-tag { background: var(--snu-gold-soft); color: #7A5B12; }
 .upload-disabled-tag { background: var(--border); color: var(--text-muted); }
-
-.folder-head-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-.link-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  background: var(--bg-card);
-  color: var(--text-secondary);
-  font-family: inherit;
-  font-size: 12.5px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-.link-btn:hover { border-color: var(--snu-navy-soft); color: var(--snu-navy); }
-.link-icon { display: inline-flex; }
-
-/* ---------- 링크 복사 토스트 ---------- */
-.toast {
-  position: fixed;
-  left: 50%;
-  bottom: 28px;
-  transform: translateX(-50%) translateY(8px);
-  background: var(--snu-navy-deep);
-  color: #fff;
-  padding: 11px 20px;
-  border-radius: 999px;
-  font-size: 13.5px;
-  font-weight: 600;
-  box-shadow: var(--shadow-md);
-  z-index: 200;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.toast.is-visible {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
 
 /* ---------- 드래그앤드롭 영역 ---------- */
 .dropzone {
@@ -283,14 +226,6 @@ body {
   font-size: 14px;
 }
 .dropzone-text strong { color: var(--text-primary); font-size: 15px; }
-
-/* ---------- 업로드 섹션 제목 ---------- */
-.upload-section-title {
-  margin: 32px 0 12px;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
 
 /* ---------- 업로드 진행 큐 ---------- */
 .upload-queue {
@@ -344,7 +279,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 0 12px;
+  margin: 28px 0 12px;
 }
 .file-list-head h3 {
   margin: 0;
@@ -419,9 +354,6 @@ body {
   text-align: center;
   padding: 72px 24px;
   color: var(--text-secondary);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
 }
 .coming-soon-icon { color: var(--snu-navy-soft); margin-bottom: 14px; }
 .coming-soon h2 { margin: 0 0 8px; color: var(--snu-navy); font-size: 20px; }
@@ -499,27 +431,10 @@ body {
 }
 
 /* ---------- 반응형 ---------- */
-@media (max-width: 860px) {
-  .page-shell {
-    flex-direction: column;
-    padding: 24px 16px 60px;
-  }
-  .tab-sidebar {
-    width: 100%;
-    position: static;
-    order: -1; /* 탭을 콘텐츠보다 위에 배치 */
-  }
-  .tabs-vertical {
-    flex-direction: row;
-    overflow-x: auto;
-    max-height: none;
-  }
-  .tabs-vertical .tab-btn {
-    flex: 0 0 auto;
-    text-align: center;
-    white-space: nowrap;
-  }
-  .page-header-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .page-title { font-size: 19px; }
+@media (max-width: 640px) {
+  .hero { padding: 44px 18px 56px; }
+  .tabs { margin-top: -20px; }
+  .tab-btn { font-size: 13.5px; padding: 10px 10px; }
   .folder-head { flex-direction: column; }
+  .container { padding: 28px 16px 60px; }
 }

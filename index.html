@@ -3,160 +3,121 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>구범용 | 수업자료</title>
+<title>서울대학교 빅데이터 핀테크 AI 고급 전문과정 13기 | 수업자료</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== 상단 배너 이미지 ===== -->
-  <div class="top-banner">
-    <img src="assets/homepage_image.png" alt="서울대학교 K-디지털 트레이닝 교육과정 · AI, 데이터, 핀테크">
-  </div>
-
-  <!-- ===== 페이지 헤더 바 (이름/배지) ===== -->
-  <header class="page-header-bar">
-    <div class="page-header-inner">
+  <!-- ===== 헤더 / 히어로 ===== -->
+  <header class="hero">
+    <div class="hero-inner">
       <span class="badge">서울대학교 빅데이터 핀테크 AI 고급 전문과정 13기</span>
-      <h1 class="page-title">구범용</h1>
+      <h1 class="hero-title">수업자료 &amp; 프로젝트 아카이브</h1>
+      <p class="hero-sub">이재욱 교수님 · 기계학습과 딥러닝 수업 Repository</p>
     </div>
   </header>
 
-  <!-- ===== 본문: 좌측 콘텐츠 + 우측 세로 탭 ===== -->
-  <div class="page-shell">
+  <!-- ===== 탭 네비게이션 ===== -->
+  <nav class="tabs" role="tablist" aria-label="과목 탭">
+    <button class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panel-stats" id="tab-stats" data-tab="stats">
+      통계
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-ml" id="tab-ml" data-tab="ml">
+      기계학습과 딥러닝
+    </button>
+  </nav>
 
-    <main class="content-area">
+  <main class="container">
 
-      <!-- ===== 탭 패널 1: 통계 ===== -->
-      <section class="tab-panel is-active" id="panel-stats" role="tabpanel" aria-labelledby="tab-stats">
+    <!-- ===== 탭 패널 1: 통계 ===== -->
+    <section class="tab-panel is-active" id="panel-stats" role="tabpanel" aria-labelledby="tab-stats">
 
-        <!-- 하위 폴더 서브 탭 -->
-        <div class="subtabs" role="tablist" aria-label="통계 하위 폴더">
-          <button class="subtab-btn is-active" data-folder="project_progress" role="tab" aria-selected="true">
-            <i class="folder-dot"></i> 프로젝트
-          </button>
-          <button class="subtab-btn" data-folder="lecture_materials" role="tab" aria-selected="false">
-            <i class="folder-dot"></i> 수업자료
-          </button>
+      <!-- 하위 폴더 서브 탭 -->
+      <div class="subtabs" role="tablist" aria-label="통계 하위 폴더">
+        <button class="subtab-btn is-active" data-folder="project_progress" role="tab" aria-selected="true">
+          <i class="folder-dot"></i> 프로젝트 진행 내역
+        </button>
+        <button class="subtab-btn" data-folder="lecture_materials" role="tab" aria-selected="false">
+          <i class="folder-dot"></i> 수업자료
+        </button>
+      </div>
+
+      <!-- 프로젝트 진행 내역 폴더 -->
+      <div class="folder-panel is-active" id="folder-project_progress">
+        <div class="folder-head">
+          <div>
+            <h2 class="folder-title">프로젝트 진행 내역</h2>
+            <p class="folder-desc">PDF 보고서와 코드 소스를 이 폴더에 업로드합니다. 파일을 끌어다 놓거나 클릭해서 선택하세요.</p>
+          </div>
+          <span class="upload-enabled-tag">업로드 가능</span>
         </div>
 
-        <!-- 프로젝트 폴더 -->
-        <div class="folder-panel is-active" id="folder-project_progress">
-          <div class="folder-head">
-            <div>
-              <h2 class="folder-title">프로젝트</h2>
-              <p class="folder-desc">PDF 보고서와 코드 소스를 이 폴더에 업로드합니다. 파일을 끌어다 놓거나 클릭해서 선택하세요.</p>
-            </div>
-            <div class="folder-head-actions">
-              <button class="link-btn" type="button" data-route="stats/project_progress" aria-label="이 화면 링크 복사">
-                <span class="link-icon" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M10 14a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07l-1.5 1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M14 10a5 5 0 0 0-7.07 0L4.1 12.83a5 5 0 0 0 7.07 7.07l1.5-1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                링크 복사
-              </button>
-              <span class="upload-enabled-tag">업로드 가능</span>
-            </div>
-          </div>
-
-          <!-- 파일 목록 (업로드 영역보다 위로 배치) -->
-          <div class="file-list-head">
-            <h3>업로드된 파일</h3>
-            <button class="refresh-btn" id="refreshBtn-project" type="button">새로고침</button>
-          </div>
-          <ul class="file-list" id="fileList-project">
-            <li class="file-list-loading">불러오는 중...</li>
-          </ul>
-
-          <!-- 드래그앤드롭 업로드 영역 -->
-          <h3 class="upload-section-title">파일 업로드</h3>
-          <div class="dropzone" id="dropzone-project" tabindex="0" role="button"
-               aria-label="파일을 끌어다 놓거나 클릭해서 업로드">
-            <div class="dropzone-icon" aria-hidden="true">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                <path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <p class="dropzone-text">
-              <strong>파일을 여기로 끌어다 놓으세요</strong><br>
-              또는 클릭해서 선택 (PDF, .py, .ipynb 등 / 최대 25MB)
-            </p>
-            <input type="file" id="fileInput-project" multiple hidden
-                   accept=".pdf,.py,.ipynb,.js,.html,.css,.txt,.md,.csv,.json">
-          </div>
-
-          <!-- 업로드 진행상황 -->
-          <ul class="upload-queue" id="uploadQueue-project" aria-live="polite"></ul>
-        </div>
-
-        <!-- 수업자료 폴더 (열람 전용) -->
-        <div class="folder-panel" id="folder-lecture_materials">
-          <div class="folder-head">
-            <div>
-              <h2 class="folder-title">수업자료</h2>
-              <p class="folder-desc">교수님이 배포한 강의자료입니다. 현재는 열람만 가능합니다.</p>
-            </div>
-            <div class="folder-head-actions">
-              <button class="link-btn" type="button" data-route="stats/lecture_materials" aria-label="이 화면 링크 복사">
-                <span class="link-icon" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M10 14a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07l-1.5 1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M14 10a5 5 0 0 0-7.07 0L4.1 12.83a5 5 0 0 0 7.07 7.07l1.5-1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                링크 복사
-              </button>
-              <span class="upload-disabled-tag">열람 전용</span>
-            </div>
-          </div>
-
-          <div class="file-list-head">
-            <h3>강의자료 목록</h3>
-            <button class="refresh-btn" id="refreshBtn-lecture" type="button">새로고침</button>
-          </div>
-          <ul class="file-list" id="fileList-lecture">
-            <li class="file-list-loading">불러오는 중...</li>
-          </ul>
-        </div>
-
-      </section>
-
-      <!-- ===== 탭 패널 2: 기계학습과 딥러닝 (추후 별도 설계) ===== -->
-      <section class="tab-panel" id="panel-ml" role="tabpanel" aria-labelledby="tab-ml" hidden>
-        <div class="coming-soon">
-          <div class="coming-soon-icon" aria-hidden="true">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M12 7v5l3 3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- 드래그앤드롭 업로드 영역 -->
+        <div class="dropzone" id="dropzone-project" tabindex="0" role="button"
+             aria-label="파일을 끌어다 놓거나 클릭해서 업로드">
+          <div class="dropzone-icon" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <h2>기계학습과 딥러닝</h2>
-          <p>이 탭의 폴더 구조와 업로드 기능은 추후 별도로 설계될 예정입니다.</p>
+          <p class="dropzone-text">
+            <strong>파일을 여기로 끌어다 놓으세요</strong><br>
+            또는 클릭해서 선택 (PDF, .py, .ipynb 등 / 최대 25MB)
+          </p>
+          <input type="file" id="fileInput-project" multiple hidden
+                 accept=".pdf,.py,.ipynb,.js,.html,.css,.txt,.md,.csv,.json">
         </div>
-      </section>
 
-    </main>
+        <!-- 업로드 진행상황 -->
+        <ul class="upload-queue" id="uploadQueue-project" aria-live="polite"></ul>
 
-    <!-- ===== 우측 세로 탭 (과목이 10개까지 늘어날 예정) ===== -->
-    <aside class="tab-sidebar">
-      <nav class="tabs-vertical" role="tablist" aria-label="과목 탭">
-        <button class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panel-stats" id="tab-stats" data-tab="stats">
-          통계
-        </button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-ml" id="tab-ml" data-tab="ml">
-          기계학습과 딥러닝
-        </button>
-        <!-- 과목 추가 시 아래 형태로 버튼만 추가하면 됩니다.
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-XXX" id="tab-XXX" data-tab="XXX">
-          과목명
-        </button>
-        -->
-      </nav>
-    </aside>
+        <!-- 파일 목록 -->
+        <div class="file-list-head">
+          <h3>업로드된 파일</h3>
+          <button class="refresh-btn" id="refreshBtn-project" type="button">새로고침</button>
+        </div>
+        <ul class="file-list" id="fileList-project">
+          <li class="file-list-loading">불러오는 중...</li>
+        </ul>
+      </div>
 
-  </div>
+      <!-- 수업자료 폴더 (열람 전용) -->
+      <div class="folder-panel" id="folder-lecture_materials">
+        <div class="folder-head">
+          <div>
+            <h2 class="folder-title">수업자료</h2>
+            <p class="folder-desc">교수님이 배포한 강의자료입니다. 현재는 열람만 가능합니다.</p>
+          </div>
+          <span class="upload-disabled-tag">열람 전용</span>
+        </div>
+
+        <div class="file-list-head">
+          <h3>강의자료 목록</h3>
+          <button class="refresh-btn" id="refreshBtn-lecture" type="button">새로고침</button>
+        </div>
+        <ul class="file-list" id="fileList-lecture">
+          <li class="file-list-loading">불러오는 중...</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- ===== 탭 패널 2: 기계학습과 딥러닝 (추후 별도 설계) ===== -->
+    <section class="tab-panel" id="panel-ml" role="tabpanel" aria-labelledby="tab-ml" hidden>
+      <div class="coming-soon">
+        <div class="coming-soon-icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2>기계학습과 딥러닝</h2>
+        <p>이 탭의 폴더 구조와 업로드 기능은 추후 별도로 설계될 예정입니다.</p>
+      </div>
+    </section>
+
+  </main>
 
   <!-- ===== 업로드 비밀번호 모달 ===== -->
   <div class="modal-backdrop" id="passwordModal" hidden>
@@ -171,9 +132,6 @@
       </div>
     </div>
   </div>
-
-  <!-- ===== 링크 복사 토스트 ===== -->
-  <div class="toast" id="toast" role="status" aria-live="polite">링크가 복사되었습니다</div>
 
   <footer class="site-footer">
     <p>서울대학교 빅데이터 핀테크 AI 고급 전문과정 13기 · <code>binsue0/.github</code> Repository 연동</p>
