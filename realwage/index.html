@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실질임금 부족분 보완 포트폴리오 추천 프로그램</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">서울대학교 빅데이터 핀테크 전문가과정 13기 · 팀 프로젝트</p>
+    <h1>실질임금 부족분 보완<br>포트폴리오 추천 프로그램</h1>
+    <p class="lead">
+      연봉이 올랐어도 물가상승률을 반영하면 실제 구매력은 줄어들 수 있습니다.
+      현재 연봉·내년 연봉·예상 물가상승률을 입력하면, 실질적으로 필요한 목표 연봉과의 차이를 계산하고
+      투자 성향에 맞는 저축·투자·부수입 포트폴리오를 제안합니다.
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. 입력 -->
+  <section class="card" id="input-section">
+    <h2><span class="step">1</span> 정보 입력</h2>
+    <div class="form-grid">
+      <label>
+        현재 연봉 (만원)
+        <input type="number" id="currentSalary" value="3000" min="0" step="10">
+      </label>
+      <label>
+        내년 예상 연봉 (만원)
+        <input type="number" id="nextSalary" value="3100" min="0" step="10">
+      </label>
+      <label>
+        예상 물가상승률 (%)
+        <input type="number" id="inflationRate" value="10" min="0" step="0.1">
+      </label>
+      <label>
+        투자 성향
+        <select id="riskType">
+          <option value="stable">안정형</option>
+          <option value="balanced" selected>균형형</option>
+          <option value="aggressive">적극형</option>
+        </select>
+      </label>
+    </div>
+    <button id="calcBtn">계산하기</button>
+    <p class="hint">기본값은 강의노트 예시(현재 3,000만 원 · 내년 3,100만 원 · 물가상승률 10%)입니다. 값을 바꾸고 계산해 보세요.</p>
+  </section>
+
+  <!-- 2. 결과 요약 -->
+  <section class="card" id="result-section">
+    <h2><span class="step">2</span> 명목 vs 실질, 한눈에 보기</h2>
+
+    <div class="cards-row">
+      <div class="stat-card">
+        <span class="stat-label">연봉 인상액 (명목)</span>
+        <span class="stat-value" id="nominalIncrease">0만 원</span>
+      </div>
+      <div class="stat-card highlight">
+        <span class="stat-label">연간 부족 금액</span>
+        <span class="stat-value" id="yearlyShortfall">0만 원</span>
+      </div>
+      <div class="stat-card highlight">
+        <span class="stat-label">월간 부족 금액</span>
+        <span class="stat-value" id="monthlyShortfall">0만 원</span>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="salaryBarChart"></canvas>
+    </div>
+  </section>
+
+  <!-- 3. 포트폴리오 추천 -->
+  <section class="card" id="portfolio-section">
+    <h2><span class="step">3</span> 부족분 보완 포트폴리오</h2>
+    <p class="sub">선택한 투자 성향(<span id="riskTypeLabel">균형형</span>) 기준, 부족한 금액을 채우는 구성입니다.</p>
+
+    <div class="portfolio-grid">
+      <div class="chart-wrap small">
+        <canvas id="portfolioPieChart"></canvas>
+      </div>
+      <ul class="portfolio-list" id="portfolioList"></ul>
+    </div>
+  </section>
+
+  <!-- 4. 시나리오 비교 -->
+  <section class="card" id="scenario-section">
+    <h2><span class="step">4</span> 투자 성향별 시나리오 비교</h2>
+    <div class="table-wrap">
+      <table id="scenarioTable">
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>안정형</th>
+            <th>균형형</th>
+            <th>적극형</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 5. 이용 안내 -->
+  <section class="card muted" id="about-section">
+    <h2>프로그램 소개 &amp; 한계</h2>
+    <p>
+      이 프로그램은 연봉이 올랐더라도 물가상승률을 고려하면 실제 구매력이 감소할 수 있다는 문제에서 출발합니다.
+      "연봉 인상만으로 부족한 실질소득을 어떻게 보완할 것인가"를 보여주는 개인 재무 시뮬레이션 도구입니다.
+    </p>
+    <p class="disclaimer">
+      ⚠️ 투자상품은 원금 손실 가능성이 있으며 예상수익률이 실제수익률과 같다는 보장은 없습니다.
+      물가상승률과 생활비 증가율은 개인마다 다르게 체감될 수 있습니다.
+      이 프로그램은 투자상품을 직접 추천하거나 수익을 보장하지 않으며, 재무 계획 참고용 시뮬레이션 도구입니다.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>실질임금 부족분 보완 포트폴리오 추천 프로그램 · 팀 프로젝트 (2026)</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
