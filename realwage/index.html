@@ -46,6 +46,10 @@
           <option value="aggressive">적극형</option>
         </select>
       </label>
+      <label>
+        추이 예측 기간 (년)
+        <input type="number" id="trendYears" value="5" min="1" max="20" step="1">
+      </label>
     </div>
     <button id="calcBtn">계산하기</button>
     <p class="hint">기본값은 강의노트 예시(현재 3,000만 원 · 내년 3,100만 원 · 물가상승률 10%)입니다. 값을 바꾸고 계산해 보세요.</p>
@@ -58,21 +62,27 @@
     <div class="cards-row">
       <div class="stat-card">
         <span class="stat-label">연봉 인상액 (명목)</span>
-        <span class="stat-value" id="nominalIncrease">0만 원</span>
+        <span class="stat-value" id="nominalIncrease" data-raw-value="0">0만 원</span>
       </div>
       <div class="stat-card highlight">
         <span class="stat-label">연간 부족 금액</span>
-        <span class="stat-value" id="yearlyShortfall">0만 원</span>
+        <span class="stat-value" id="yearlyShortfall" data-raw-value="0">0만 원</span>
       </div>
       <div class="stat-card highlight">
         <span class="stat-label">월간 부족 금액</span>
-        <span class="stat-value" id="monthlyShortfall">0만 원</span>
+        <span class="stat-value" id="monthlyShortfall" data-raw-value="0">0만 원</span>
       </div>
     </div>
 
     <div class="chart-wrap">
       <canvas id="salaryBarChart"></canvas>
     </div>
+
+    <h3 class="subhead">연도별 명목 vs 실질 목표 연봉 추이</h3>
+    <div class="chart-wrap">
+      <canvas id="trendLineChart"></canvas>
+    </div>
+    <p class="hint" id="trendNote"></p>
   </section>
 
   <!-- 3. 포트폴리오 추천 -->
@@ -91,6 +101,10 @@
   <!-- 4. 시나리오 비교 -->
   <section class="card" id="scenario-section">
     <h2><span class="step">4</span> 투자 성향별 시나리오 비교</h2>
+    <p class="sub">세 가지 성향을 한 화면에서 비교합니다. 막대 하나가 부족액 전체이며, 색상 구간이 각 항목입니다.</p>
+    <div class="chart-wrap">
+      <canvas id="compareBarChart"></canvas>
+    </div>
     <div class="table-wrap">
       <table id="scenarioTable">
         <thead>
@@ -127,6 +141,7 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
