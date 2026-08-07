@@ -38,7 +38,7 @@ body {
 }
 
 .hero {
-  padding: 64px 24px 48px;
+  padding: 10px 24px 7px;
   background: radial-gradient(circle at top left, #1c2536, var(--bg) 60%);
   border-bottom: 1px solid var(--panel-border);
 }
@@ -47,21 +47,21 @@ body {
 
 .eyebrow {
   color: var(--accent);
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin: 0 0 12px;
+  margin: 0 0 3px;
 }
 
 .hero h1 {
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
-  margin: 0 0 16px;
-  line-height: 1.3;
+  font-size: clamp(0.95rem, 1.8vw, 1.3rem);
+  margin: 0 0 4px;
+  line-height: 1.15;
 }
 
 .lead {
   color: var(--text-dim);
-  font-size: 1rem;
+  font-size: 0.72rem;
   max-width: 620px;
 }
 
